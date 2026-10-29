@@ -11,7 +11,8 @@ export function validate(schema: ZodSchema, target: ValidationTarget = 'body') {
       next();
     } catch (error) {
       if (error instanceof ZodError) {
-        const messages = error.errors.map((e) => `${e.path.join('.')}: ${e.message}`);
+        const issues = (error as any).issues || (error as any).errors || [];
+        const messages = issues.map((e: any) => `${(e.path || []).join('.')}: ${e.message}`);
         return res.status(400).json({
           success: false,
           message: 'Dữ liệu không hợp lệ',
