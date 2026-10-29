@@ -22,15 +22,55 @@ const app = express();
 
 // Global middleware
 app.use(helmet());
-app.use(cors({ origin: ['http://localhost:5173', 'http://localhost:3000'], credentials: true }));
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      // Allow requests with no origin (like mobile apps, curl, or same-origin)
+      if (!origin) return callback(null, true);
+      if (
+        origin.includes('localhost') ||
+        origin.includes('vercel.app') ||
+        origin.includes('onrender.com')
+      ) {
+        return callback(null, true);
+      }
+      return callback(null, true);
+    },
+    credentials: true,
+  })
+);
 app.use(morgan('dev'));
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-// Health check
-app.get('/api/health', (_req, res) => {
-  res.json({ status: 'ok', timestamp: new Date().toISOString() });
+import { db } from './config/database';
+
+// Root endpoint
+app.get('/', (_req, res) => {
+  res.json({
+    name: 'Flower Shop Management API',
+    status: 'online',
+    version: '1.0.0',
+    documentation: '/api/health',
+  });
+});
+
+// Health check with database verification
+app.get('/api/health', async (_req, res) => {
+  let dbStatus = 'disconnected';
+  try {
+    const [rows] = await db.query('SELECT 1 as connected');
+    if (rows) dbStatus = 'connected';
+  } catch (err: any) {
+    dbStatus = `error: ${err.message}`;
+  }
+
+  res.json({
+    status: 'ok',
+    database: dbStatus,
+    timestamp: new Date().toISOString(),
+  });
 });
 
 // API routes

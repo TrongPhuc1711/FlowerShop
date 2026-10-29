@@ -145,7 +145,7 @@ export const LoginPage: React.FC = () => {
 
         {/* Footer */}
         <p className="text-center text-xs text-slate-400 mt-6">
-          © 2026 Flower Shop Management. Cloud MySQL Connected.
+          © 2026 Flower Shop.
         </p>
       </div>
     </div>
