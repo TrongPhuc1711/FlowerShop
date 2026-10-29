@@ -32,6 +32,7 @@ export function errorHandler(err: Error, _req: Request, res: Response, _next: Ne
   return res.status(500).json({
     success: false,
     message: 'Đã xảy ra lỗi hệ thống',
+    detail: err.message,
     ...(env.nodeEnv === 'development' && { error: err.message, stack: err.stack }),
   });
 }
