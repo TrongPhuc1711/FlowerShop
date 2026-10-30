@@ -65,7 +65,7 @@ export const DashboardPage: React.FC = () => {
         <div className="relative z-10 max-w-2xl">
           <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full bg-white/20 backdrop-blur-md text-[11px] sm:text-xs font-semibold mb-2 sm:mb-4">
             <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
-            Hệ thống quản lý Hoa Tươi 3NF
+            Hệ thống quản lý Hoa Sáp & Hoa Giả 3NF
           </div>
           <h1 className="text-xl sm:text-3xl font-extrabold tracking-tight">
             Chào mừng trở lại! 🌸

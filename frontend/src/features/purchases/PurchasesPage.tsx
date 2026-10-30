@@ -124,10 +124,10 @@ export const PurchasesPage: React.FC = () => {
         <div>
           <h1 className="text-2xl font-black text-slate-800 tracking-tight flex items-center gap-2">
             <Truck className="w-6 h-6 text-rose-500" />
-            Nhập Hàng Từ Nhà Vườn
+            Nhập Hàng Từ Nhà Cung Cấp
           </h1>
           <p className="text-xs text-slate-500 mt-1">
-            Quản lý phiếu nhập hàng hoa tươi, chi phí vận chuyển phân bổ và lô hàng FEFO.
+            Quản lý phiếu nhập hoa sáp, hoa lụa, đầu bông sáp và vật tư đóng gói phụ kiện.
           </p>
         </div>
 

@@ -7,6 +7,12 @@ export interface User {
   fullName: string;
   role: string;
   roleName: string;
+  email?: string;
+  phone?: string;
+  address?: string;
+  customerId?: number | null;
+  customerCode?: string | null;
+  loyaltyPoints?: number;
 }
 
 interface AuthContextType {
@@ -16,6 +22,7 @@ interface AuthContextType {
   isLoading: boolean;
   login: (token: string, user: User) => void;
   logout: () => void;
+  updateUser: (partialUser: Partial<User>) => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -49,6 +56,15 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setUser(newUser);
   };
 
+  const updateUser = (partialUser: Partial<User>) => {
+    setUser((prev) => {
+      if (!prev) return null;
+      const updated = { ...prev, ...partialUser };
+      localStorage.setItem('flower_shop_user', JSON.stringify(updated));
+      return updated;
+    });
+  };
+
   const logout = async () => {
     try {
       await api.post('/auth/logout');
@@ -72,6 +88,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         isLoading,
         login,
         logout,
+        updateUser,
       }}
     >
       {children}

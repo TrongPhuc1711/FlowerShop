@@ -54,7 +54,7 @@ export const InventoryPage: React.FC = () => {
             Tồn Kho & Quản Lý Lô (FEFO)
           </h1>
           <p className="text-xs text-slate-500 mt-1">
-            Theo dõi số lượng tồn thực tế, số lượng giữ chỗ và hạn sử dụng hoa tươi.
+            Theo dõi số lượng tồn thực tế, số lượng giữ chỗ hoa sáp, hoa lụa và phụ kiện decor.
           </p>
         </div>
       </div>

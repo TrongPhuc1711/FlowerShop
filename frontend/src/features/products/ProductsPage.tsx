@@ -36,7 +36,7 @@ export const ProductsPage: React.FC = () => {
   const [name, setName] = useState('');
   const [unitId, setUnitId] = useState<number>(1);
   const [categoryId, setCategoryId] = useState<number | undefined>(undefined);
-  const [type, setType] = useState('HOA_TUOI');
+  const [type, setType] = useState('HOA_SAP');
   const [price, setPrice] = useState<number>(50000);
   const [refCostPrice, setRefCostPrice] = useState<number>(30000);
   const [minStock, setMinStock] = useState<number>(10);
@@ -116,12 +116,12 @@ export const ProductsPage: React.FC = () => {
   // Quick Seed Demo Flowers button
   const handleSeedDemoFlowers = async () => {
     const demoFlowers = [
-      { sku: 'HOA-HONG-DO', name: 'Hoa Hồng Đỏ Đà Lạt', type: 'HOA_TUOI', price: 15000, refCostPrice: 8000, unitId: 1, minStock: 50 },
-      { sku: 'HOA-HUONG-DUONG', name: 'Hoa Hướng Dương Lùn', type: 'HOA_TUOI', price: 25000, refCostPrice: 12000, unitId: 1, minStock: 30 },
-      { sku: 'BO-HOA-TINH-YEU', name: 'Bó Hoa Tình Yêu (99 Bông)', type: 'BO_HOA', price: 850000, refCostPrice: 400000, unitId: 2, minStock: 5 },
-      { sku: 'GIO-HOA-KHAI-TRUONG', name: 'Giỏ Hoa Chúc Mừng Khai Trương', type: 'GIO_HOA', price: 1200000, refCostPrice: 600000, unitId: 3, minStock: 3 },
-      { sku: 'HOA-BABY-TRANG', name: 'Hoa Baby Trắng Nhập Hà Lan', type: 'HOA_TUOI', price: 45000, refCostPrice: 22000, unitId: 2, minStock: 20 },
-      { sku: 'HOA-LAN-HO-DIEP', name: 'Chậu Lan Hồ Điệp 5 Cành', type: 'CAY_CANH', price: 1500000, refCostPrice: 800000, unitId: 4, minStock: 4 },
+      { sku: 'SAP-HONG-DO-99', name: 'Bó Hoa Hồng Sáp Đỏ 99 Bông', type: 'HOA_SAP', price: 650000, refCostPrice: 280000, unitId: 2, minStock: 10 },
+      { sku: 'SAP-PASTEL-HAN', name: 'Bó Hoa Sáp Thơm Pastel Hàn Quốc', type: 'HOA_SAP', price: 380000, refCostPrice: 160000, unitId: 2, minStock: 15 },
+      { sku: 'HOP-TRAI-TIM-SAP', name: 'Hộp Hoa Sáp Trái Tim Kèm Đèn LED', type: 'HOA_SAP', price: 490000, refCostPrice: 210000, unitId: 5, minStock: 12 },
+      { sku: 'BINH-LUA-PHONG-KHACH', name: 'Bình Hoa Lụa Để Bàn Phòng Khách', type: 'HOA_LUA', price: 850000, refCostPrice: 420000, unitId: 4, minStock: 8 },
+      { sku: 'SAP-TOT-NGHIEP', name: 'Bó Hoa Hướng Dương Sáp Tốt Nghiệp', type: 'HOA_SAP', price: 320000, refCostPrice: 130000, unitId: 2, minStock: 20 },
+      { sku: 'BABY-KHO-BAT-TU', name: 'Bó Hoa Baby Khô Bất Tử Vintage', type: 'HOA_GIA', price: 350000, refCostPrice: 150000, unitId: 2, minStock: 15 },
     ];
 
     try {
@@ -316,11 +316,12 @@ export const ProductsPage: React.FC = () => {
                     onChange={(e) => setType(e.target.value)}
                     className="w-full px-3 py-2 text-xs border border-slate-200 rounded-xl bg-slate-50 focus:outline-none focus:border-rose-500 font-medium"
                   >
-                    <option value="HOA_TUOI">Hoa tươi</option>
-                    <option value="BO_HOA">Bó hoa</option>
-                    <option value="GIO_HOA">Giỏ hoa</option>
-                    <option value="CAY_CANH">Cây cảnh</option>
-                    <option value="PHU_KIEN">Phụ kiện</option>
+                    <option value="HOA_SAP">Hoa sáp thơm</option>
+                    <option value="HOA_LUA">Hoa lụa nghệ thuật</option>
+                    <option value="HOA_GIA">Hoa giả / Hoa khô</option>
+                    <option value="BO_HOA">Bó hoa thiết kế</option>
+                    <option value="GIO_HOA">Giỏ / Bình hoa decor</option>
+                    <option value="PHU_KIEN">Phụ kiện cắm hoa</option>
                     <option value="KHAC">Khác</option>
                   </select>
                 </div>

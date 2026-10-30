@@ -17,6 +17,7 @@ import dashboardRoutes from './modules/dashboard/dashboard.routes';
 import inventoryRoutes from './modules/inventory/inventory.routes';
 import salesRoutes from './modules/sales/sales.routes';
 import purchaseRoutes from './modules/purchases/purchase.routes';
+import shopRoutes from './modules/shop/shop.routes';
 
 const app = express();
 
@@ -85,6 +86,7 @@ app.use('/api/dashboard', dashboardRoutes);
 app.use('/api/inventory', inventoryRoutes);
 app.use('/api/sales', salesRoutes);
 app.use('/api/purchases', purchaseRoutes);
+app.use('/api/shop', shopRoutes);
 
 // 404
 app.use((_req, res) => {

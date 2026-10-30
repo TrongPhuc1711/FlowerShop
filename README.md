@@ -1,6 +1,6 @@
-# 🌸 Flower Shop — Hệ Thống Quản Lý Cửa Hàng Hoa Tươi
+# 🌸 Flower Shop — Hệ Thống Quản Lý & Bán Hoa Sáp, Hoa Giả Nghệ Thuật
 
-Hệ thống quản lý bán hàng (POS), tồn kho theo phương pháp FEFO, phiếu nhập hàng và quản lý khách hàng/nhà cung cấp thiết kế chuẩn 3NF, hỗ trợ giao diện **Mobile First** mượt mà trên điện thoại và máy tính.
+Hệ thống quản lý bán hàng (POS & Storefront Online), tồn kho hoa sáp, hoa lụa, phụ kiện cắm hoa và quản lý khách hàng/nhà cung cấp thiết kế chuẩn 3NF, hỗ trợ giao diện **Mobile First** mượt mà trên điện thoại và máy tính.
 
 ---
 

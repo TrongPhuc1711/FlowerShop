@@ -5,7 +5,9 @@ export const createProductSchema = z.object({
   unitId: z.number().int().positive(),
   sku: z.string().min(1).max(60),
   name: z.string().min(1).max(200),
-  type: z.enum(['HOA_TUOI', 'CAY_CANH', 'BO_HOA', 'GIO_HOA', 'PHU_KIEN', 'KHAC']).default('HOA_TUOI'),
+  type: z
+    .enum(['HOA_SAP', 'HOA_LUA', 'HOA_GIA', 'BO_HOA', 'GIO_HOA', 'PHU_KIEN', 'KHAC'])
+    .default('HOA_SAP'),
   price: z.number().min(0).default(0),
   refCostPrice: z.number().min(0).default(0),
   minStock: z.number().min(0).default(0),

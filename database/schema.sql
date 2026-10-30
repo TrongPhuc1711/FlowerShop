@@ -60,6 +60,7 @@ CREATE TABLE nha_cung_cap (
 
 CREATE TABLE khach_hang (
   id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  nguoi_dung_id BIGINT UNSIGNED NULL,
   ma_khach_hang VARCHAR(40) NOT NULL UNIQUE,
   ho_ten VARCHAR(180) NOT NULL,
   so_dien_thoai VARCHAR(30),
@@ -72,6 +73,7 @@ CREATE TABLE khach_hang (
   trang_thai_hoat_dong BOOLEAN NOT NULL DEFAULT TRUE,
   ngay_tao TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   ngay_cap_nhat TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  CONSTRAINT fk_kh_nguoi_dung FOREIGN KEY (nguoi_dung_id) REFERENCES nguoi_dung(id) ON DELETE SET NULL,
   INDEX idx_khach_hang_dien_thoai(so_dien_thoai)
 ) ENGINE=InnoDB;
 
@@ -124,8 +126,8 @@ CREATE TABLE san_pham (
   don_vi_tinh_id BIGINT UNSIGNED NOT NULL,
   ma_sku VARCHAR(60) NOT NULL UNIQUE,
   ten_san_pham VARCHAR(200) NOT NULL,
-  loai_san_pham ENUM('HOA_TUOI','CAY_CANH','BO_HOA','GIO_HOA','PHU_KIEN','KHAC')
-    NOT NULL DEFAULT 'HOA_TUOI',
+  loai_san_pham ENUM('HOA_SAP','HOA_LUA','HOA_GIA','BO_HOA','GIO_HOA','PHU_KIEN','KHAC')
+    NOT NULL DEFAULT 'HOA_SAP',
   gia_ban DECIMAL(14,2) NOT NULL DEFAULT 0,
   gia_von_tham_khao DECIMAL(14,4) NOT NULL DEFAULT 0,
   ton_kho_toi_thieu DECIMAL(14,3) NOT NULL DEFAULT 0,
@@ -559,7 +561,8 @@ INSERT INTO vai_tro (ma_vai_tro, ten_vai_tro, mo_ta) VALUES
   ('ADMIN', 'Quản trị viên', 'Toàn quyền hệ thống'),
   ('MANAGER', 'Quản lý', 'Quản lý cửa hàng'),
   ('CASHIER', 'Thu ngân', 'Bán hàng và thu tiền'),
-  ('WAREHOUSE', 'Thủ kho', 'Quản lý kho hàng');
+  ('WAREHOUSE', 'Thủ kho', 'Quản lý kho hàng'),
+  ('CUSTOMER', 'Khách hàng', 'Khách hàng mua sắm hoa giả & hoa sáp');
 
 INSERT INTO nguoi_dung (vai_tro_id, ten_dang_nhap, mat_khau_hash, ho_ten, email) VALUES
   (1, 'admin', '$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Admin Hệ Thống', 'admin@flowershop.vn');

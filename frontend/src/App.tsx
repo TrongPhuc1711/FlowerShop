@@ -10,9 +10,10 @@ import { InventoryPage } from './features/inventory/InventoryPage';
 import { PurchasesPage } from './features/purchases/PurchasesPage';
 import { CustomersPage } from './features/customers/CustomersPage';
 import { SuppliersPage } from './features/suppliers/SuppliersPage';
+import { CustomerShopPage } from './features/shop/CustomerShopPage';
 
-const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const { isAuthenticated, isLoading } = useAuth();
+const ProtectedStaffRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const { user, isAuthenticated, isLoading } = useAuth();
 
   if (isLoading) {
     return (
@@ -26,6 +27,11 @@ const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) =
     return <Navigate to="/login" replace />;
   }
 
+  // If logged-in user is a customer, redirect to customer shop
+  if (user?.role === 'CUSTOMER') {
+    return <Navigate to="/shop" replace />;
+  }
+
   return <>{children}</>;
 };
 
@@ -34,14 +40,20 @@ export const App: React.FC = () => {
     <AuthProvider>
       <BrowserRouter>
         <Routes>
+          {/* Public Customer Flower Storefront */}
+          <Route path="/" element={<CustomerShopPage />} />
+          <Route path="/shop" element={<CustomerShopPage />} />
+
+          {/* Authentication (Login & Register) */}
           <Route path="/login" element={<LoginPage />} />
 
+          {/* Staff & Admin Management Portal */}
           <Route
-            path="/"
+            path="/admin"
             element={
-              <ProtectedRoute>
+              <ProtectedStaffRoute>
                 <AppLayout />
-              </ProtectedRoute>
+              </ProtectedStaffRoute>
             }
           >
             <Route index element={<DashboardPage />} />
@@ -53,7 +65,70 @@ export const App: React.FC = () => {
             <Route path="suppliers" element={<SuppliersPage />} />
           </Route>
 
-          <Route path="*" element={<Navigate to="/" replace />} />
+          {/* Direct legacy staff paths */}
+          <Route
+            path="/sales"
+            element={
+              <ProtectedStaffRoute>
+                <AppLayout />
+              </ProtectedStaffRoute>
+            }
+          >
+            <Route index element={<SalesPage />} />
+          </Route>
+          <Route
+            path="/products"
+            element={
+              <ProtectedStaffRoute>
+                <AppLayout />
+              </ProtectedStaffRoute>
+            }
+          >
+            <Route index element={<ProductsPage />} />
+          </Route>
+          <Route
+            path="/inventory"
+            element={
+              <ProtectedStaffRoute>
+                <AppLayout />
+              </ProtectedStaffRoute>
+            }
+          >
+            <Route index element={<InventoryPage />} />
+          </Route>
+          <Route
+            path="/purchases"
+            element={
+              <ProtectedStaffRoute>
+                <AppLayout />
+              </ProtectedStaffRoute>
+            }
+          >
+            <Route index element={<PurchasesPage />} />
+          </Route>
+          <Route
+            path="/customers"
+            element={
+              <ProtectedStaffRoute>
+                <AppLayout />
+              </ProtectedStaffRoute>
+            }
+          >
+            <Route index element={<CustomersPage />} />
+          </Route>
+          <Route
+            path="/suppliers"
+            element={
+              <ProtectedStaffRoute>
+                <AppLayout />
+              </ProtectedStaffRoute>
+            }
+          >
+            <Route index element={<SuppliersPage />} />
+          </Route>
+
+          {/* Catch-all redirect to shop */}
+          <Route path="*" element={<Navigate to="/shop" replace />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>

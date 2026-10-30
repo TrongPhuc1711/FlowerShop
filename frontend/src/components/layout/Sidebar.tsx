@@ -21,13 +21,14 @@ interface SidebarProps {
 }
 
 const navigation = [
-  { name: 'Tổng quan', href: '/', icon: LayoutDashboard },
+  { name: 'Tổng quan', href: '/admin', icon: LayoutDashboard },
   { name: 'Bán hàng (POS)', href: '/sales', icon: ShoppingCart },
   { name: 'Sản phẩm & Hoa', href: '/products', icon: Package },
   { name: 'Tồn kho & Lô', href: '/inventory', icon: Layers },
   { name: 'Nhập hàng', href: '/purchases', icon: Truck },
   { name: 'Khách hàng', href: '/customers', icon: Users },
   { name: 'Nhà cung cấp', href: '/suppliers', icon: Building2 },
+  { name: 'Cửa hàng khách', href: '/shop', icon: Flower2 },
 ];
 
 export const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {

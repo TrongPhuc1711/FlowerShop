@@ -35,6 +35,15 @@ export const Header: React.FC<HeaderProps> = ({ onOpenMenu }) => {
       </div>
 
       <div className="flex items-center gap-2 sm:gap-4">
+        {/* Link to Customer Storefront */}
+        <a
+          href="/shop"
+          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-rose-50 hover:bg-rose-100 text-rose-600 text-xs font-bold transition-colors"
+          title="Xem trang khách hàng"
+        >
+          <Flower2 className="w-3.5 h-3.5" />
+          <span className="hidden sm:inline">Cửa hàng khách</span>
+        </a>
         {/* User profile dropdown info */}
         <div className="flex items-center gap-2.5 sm:gap-3 pl-2 sm:pl-4 sm:border-l border-slate-200">
           <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-gradient-to-tr from-rose-500 to-pink-500 text-white flex items-center justify-center font-bold text-xs sm:text-sm shadow-sm shadow-rose-500/20">
